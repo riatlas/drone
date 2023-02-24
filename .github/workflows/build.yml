@@ -26,7 +26,7 @@ jobs:
         go-version: 1.19
 
     - name: Build
-      run: go build -o ./release/linux/drone-server -tags "nolimit" -v ./cmd/drone-server
+      run: go build -o ./release/linux/drone-server -tags "nolimit" ./cmd/drone-server
 
     - name: Test
       run: go test -v ./cmd/drone-server/
