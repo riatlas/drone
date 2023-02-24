@@ -25,12 +25,6 @@ jobs:
       with:
         go-version: 1.19
 
-    - name: Build
-      run: go build -o ./release/linux/drone-server -tags "nolimit" ./cmd/drone-server
-
-    - name: Test
-      run: go test -v ./cmd/drone-server/
-
     - name: Log in to the Container registry
       uses: docker/login-action@master
       with:
@@ -58,7 +52,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         context: .
-        file: ./docker/Dockerfile.server.linux
+        file: ./docker/Dockerfile.server.nolimit.linux
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta.outputs.tags }}
